@@ -1,0 +1,57 @@
+.container-addbook {
+    /* position: relative; */
+    display: inline-block;
+    width: 77%;
+    /* border: 2px solid azure; */
+}
+
+form {
+    display: inline-block;
+    position: relative;
+    width: 60%;
+}
+
+form input {
+    display: flexbox;
+    background-color: white;
+    width: 25%;
+    padding: 5px;
+    margin: 10px;
+    color: black;
+    border: 2px solid #9DB2BF;
+    outline: none;
+    font-size: large;
+}
+
+form input:focus {
+    border: 3px solid #9DB2BF;
+}
+
+form button {
+    /* display: inline-flex;
+    position: relative;
+    background-color: black;
+    width: 1vh; */
+    /* background-color: slategray; */
+    border: 1px solid azure;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    display: inline-flex;
+    font-size: 16px;
+    float: right;
+    margin: 2em;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #9DB2BF;
+}
+
+form button:active {
+    background-color: #9DB2BF;
+    box-shadow: 1px 0 2px black, 0 0 15px azure, 0 0 5px black;
+    transform: translateY(4px);
+    font-weight: bold;
+    border: 1px solid #526D82;
+}

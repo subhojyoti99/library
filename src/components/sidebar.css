@@ -1,0 +1,32 @@
+* {
+    color: azure;
+    background-color: #526D82;
+}
+
+.side {
+    width: 20%;
+    background-color: #9DB2BF;
+    display: flex;
+    float: left;
+    box-shadow: 1px 1px 2px black, 0 0 15px azure, 0 0 5px black;
+}
+
+.container {
+    padding: 10px;
+    margin: 5%;
+    width: 100%;
+    height: 800px;
+}
+
+.container-list {
+    text-align: left;
+    list-style-type: none;
+    padding: 5px;
+}
+
+.container-list li {
+    text-align: left;
+    list-style-type: none;
+    padding: 15px;
+    margin: 2%;
+}
