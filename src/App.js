@@ -1,10 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import { Sidebar } from './components/Sidebar';
+// import { Sidebar } from './components/Sidebar';
 import { AddNewBook } from './components/AddNewBook';
 import { RemoveBook } from './components/RemoveBook';
-import { BrowserRouter, Route, Router, Routes, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { About } from './components/About';
+import { Register } from './components/Register';
+import { Login } from './components/Login';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
 
           {/* <Sidebar /> */}
           <Route path='/' element={<About />} />
-          <Route path='/add-new-book' element={<AddNewBook />} />
+          <Route path='/auth/register' element={<Register />} />
+          <Route path='/auth/login' element={<Login />} />
+          <Route path='/admin/library/book' element={<AddNewBook />} />
           <Route path='/remove-book' element={<RemoveBook />} />
           {/* <AddNewBook />
         <RemoveBook /> */}

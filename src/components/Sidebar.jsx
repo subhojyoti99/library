@@ -13,6 +13,8 @@ export const Sidebar = () => {
                         <h4>Update booK</h4>
                         <h4>IssueS</h4> */}
                         <ul>
+                            <li><Link to="/auth/register">Register</Link></li>
+                            <li><Link to="/auth/login">Login</Link></li>
                             <li><Link to="/add-new-book">Add new booK</Link></li>
                             <li><Link to="/remove-book">Remove booK</Link></li>
                             <li>Update booK</li>
