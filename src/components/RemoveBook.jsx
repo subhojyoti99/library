@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Sidebar } from "./Sidebar";
-import axios from "axios";
+import axios from '../utils/axios'; 
 import './removebook.css'
-import { computeHeadingLevel } from "@testing-library/react";
 
 export function RemoveBook() {
     const [bookId, setBookId] = useState("");
 
-    const handleDelete = async () => {
+    const handleDelete = async (e) => {
+        e.preventDefault(); 
         try {
-            const res = await axios.delete(`api/${bookId}`);
-
+            const res = await axios.delete(`admin/library/book/` + bookId);
+            console.log(res)
         } catch (err) {
             console.error(err);
         }
@@ -19,7 +19,6 @@ export function RemoveBook() {
         <Sidebar />
         <div className="container-addbook">
             <h2>Remove a booK</h2>
-            <h1>Right arrow: <i className="arrow right"></i></h1>
             <hr />
         </div>
         <div>

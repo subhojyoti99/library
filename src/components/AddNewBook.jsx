@@ -14,18 +14,28 @@ export function AddNewBook() {
     "available_copies":""
     });
 
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setBookData({ ...bookData, [name]: value })
-    }
+    // function handleChange(e) {
+    //     console.log('handleChange called');
+    //     const { name, value } = e.target;
+    //     setBookData({ ...bookData, [name]: value })
+    //     console.log(bookData);
+    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const token = localStorage.getItem('token') 
         try {
-            const res = await axios.post('http://localhost:8080/admin/library/book', bookData,{
-                'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-            });
+            const BOOKWithNumber = { 
+                ...bookData, 
+                total_copies: +bookData.total_copies,
+                available_copies: +bookData.available_copies,
+                };
+            const res = await axios.post('http://localhost:8080/admin/library/book', BOOKWithNumber,{
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': `Bearer ${token}`
+                }
+        });
             console.log("Response:", res.data);
         } catch (err) {
             console.error("Error:", err)
@@ -40,13 +50,13 @@ export function AddNewBook() {
             </div>
             <div>
             <form onSubmit={handleSubmit}>
-        <input type="text" name="ISBN" placeholder="ISBN" value={bookData.ISBN} onChange={handleChange} required />
-        <input type="text" name="Title" placeholder="Title" value={bookData.Title} onChange={handleChange} required />
-        <input type="text" name="Authors" placeholder="Authors" value={bookData.Authors} onChange={handleChange} required />
-        <input type="text" name="Publisher" placeholder="Publisher" value={bookData.Publisher} onChange={handleChange} required />
-        <input type="text" name="Version" placeholder="Version" value={bookData.Version} onChange={handleChange} required />
-        <input type="number" name="TotalCopies" placeholder="Total Copies" value={bookData.TotalCopies} onChange={handleChange} required />
-        <input type="number" name="AvailableCopies" placeholder="Available Copies" value={bookData.AvailableCopies} onChange={handleChange} required />
+        <input type="text" name="ISBN" placeholder="ISBN" value={bookData.isbn} onChange={(e)=>setBookData({ ...bookData, isbn: e.target.value })} required />
+        <input type="text" name="Title" placeholder="Title" value={bookData.title} onChange={(e)=>setBookData({ ...bookData, title: e.target.value })} required />
+        <input type="text" name="Authors" placeholder="Authors" value={bookData.authors} onChange={(e)=>setBookData({ ...bookData, authors: e.target.value })} required />
+        <input type="text" name="Publisher" placeholder="Publisher" value={bookData.publisher} onChange={(e)=>setBookData({ ...bookData, publisher: e.target.value })} required />
+        <input type="text" name="Version" placeholder="Version" value={bookData.version} onChange={(e)=>setBookData({ ...bookData, version: e.target.value })} required />
+        <input type="number" name="TotalCopies" placeholder="Total Copies" value={bookData.total_copies} onChange={(e)=>setBookData({ ...bookData, total_copies: e.target.value })} required />
+        <input type="number" name="AvailableCopies" placeholder="Available Copies" value={bookData.available_copies} onChange={(e)=>setBookData({ ...bookData, available_copies: e.target.value })} required />
         <button type="submit">Add Book</button>
         </form>
             </div>
