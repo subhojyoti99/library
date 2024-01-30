@@ -1,0 +1,62 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const Search = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    // Define the function to perform the search
+    const performSearch = async () => {
+      try {
+        // Replace 'YOUR_API_ENDPOINT' with your actual API endpoint
+        const response = await axios.get(`YOUR_API_ENDPOINT/search`, {
+          params: { term: searchTerm }
+        });
+
+        // Update search results based on API response
+        setSearchResults(response.data.results);
+
+        // For demonstration purposes, just logging the search term and results
+        console.log('Searching for:', searchTerm);
+        console.log('Search results:', response.data.results);
+      } catch (error) {
+        console.error('Error during search:', error);
+      }
+    };
+
+    // Trigger the search if the search term has only one letter
+    if (searchTerm.length === 1) {
+      // Introduce a delay before triggering the search (adjust as needed)
+      const searchTimeout = setTimeout(() => {
+        performSearch();
+      }, 500);
+
+      // Cleanup the timeout to avoid triggering unnecessary searches
+      return () => clearTimeout(searchTimeout);
+    }
+  }, [searchTerm]);
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        placeholder="Enter search term"
+      />
+
+      <ul>
+        {searchResults.map((result) => (
+          <li key={result.id}>{result.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Search;
